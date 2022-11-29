@@ -403,7 +403,6 @@
 	<!-- Vendor JS -->
     <script src="{{ asset('template/js/vendors.min.js') }}"></script>
     <script src="{{ asset('template/js/pages/chat-popup.js') }}"></script>
-    <script src="{{ asset('template/assets/icons/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}"></script>
     <script src="{{ asset('template/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}"></script>
     <script src="{{ asset('template/assets/vendor_components/select2/dist/js/select2.full.js') }}"></script>
