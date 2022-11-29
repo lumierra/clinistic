@@ -11,6 +11,7 @@
     <meta property="og:url" content="{{ route('login') }}" />
     <meta property="og:image" content="{{ asset($dataWebsite->logo ?? '') }}" />
     <link rel="icon" href="{{ asset($dataWebsite->logo ?? '') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<link rel="stylesheet" href="{{ asset('login/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('fapro6/css/all.css') }}">
@@ -31,6 +32,9 @@
                             <div class="form-group">
                                 <input id="password-field" type="password" name="password" class="form-control" placeholder="Password" autocomplete="off">
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class="form-group text-center d-none" id="texterror">
+
                             </div>
                             <div class="form-group">
                                 <button type="submit" id="btnSubmit" class="form-control btn btn-primary submit px-3">Sign In <i class="fa-solid fa-fingerprint"></i></button>
@@ -63,6 +67,12 @@
     <script src="{{ asset('login/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('login/js/main.js') }}"></script>
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $('#username').focus();
         $('#username').val('');
         $('input:text').focus(
@@ -123,13 +133,22 @@
                         dataType: 'json',
                         success: function (data) {
                             $('#btnSubmit').prop('disabled', false)
-                            $('#btnSubmit').html('<i class="fa-solid fa-shield-check fa-beat"></i>')
-                            window.location.href = "{{ route('admin.dashboard.index') }}";
+                            if (data.status == false){
+                                $('#texterror').removeClass('d-none')
+                                $('#texterror').html(`<i class="fa-solid fa-circle-exclamation"></i> ${data.message}`)
+                                $('#texterror').addClass('text-danger')
+                                $('#btnSubmit').html('SIGN IN <i class="fa-solid fa-fingerprint"></i>')
+                            } else {
+                                $('#texterror').addClass('d-none')
+                                $('#btnSubmit').html('<i class="fa-solid fa-shield-check fa-beat"></i>')
+                                window.location.href = "{{ route('admin.dashboard.index') }}";
+                            }
                         },
                         error: function (data) {
+                            $('#texterror').removeClass('d-none')
+                            $('#texterror').html(`<i class="fa-solid fa-circle-exclamation"></i> Gagal Login`)
+                            $('#texterror').addClass('text-danger')
                             $('#btnSubmit').html('SIGN IN <i class="fa-solid fa-fingerprint"></i>')
-                            alert('Gagal Login')
-                            location.reload();
                             $('#btnSubmit').prop('disabled', false)
                         }
                     });

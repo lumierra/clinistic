@@ -152,12 +152,6 @@
 
             $(function () {
 
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
                 $('.dataServer').DataTable({
                     'processing': true,
                     'serverSide': true,
@@ -202,9 +196,9 @@
                     }
                 })
                 .on( 'error.dt', function ( e, settings, techNote, message ) {
-                    window.location.reload();
+                    // window.location.reload();
                 });
-                $.fn.dataTable.ext.errMode = 'none';
+                // $.fn.dataTable.ext.errMode = 'none';
             });
 
             $('#add').click(function () {
