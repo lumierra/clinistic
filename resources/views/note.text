@@ -1,0 +1,215 @@
+form input pasien NIK min&max (sudah)
+provinsi kabupaten = null (sudah)
+nomor asuransi dibatasin (sudah)
+pilihan tanggal di dashboard rawat jalan & pelayanan (sudah)
+dashboard pelayanan status proses (sudah)
+sync = alert untuk tidak ditemukan (sudah)
+jarak antara spasi riwayat alergi (sudah)
+IMT (sudah)
+status pulang tambahin sembuh (sudah)
+tinggi badan (sudah)
+button selesai di pelayanan kembali (sudah)
+nomor bpjs (sudah).
+pencarian nik, no rm, nama (sudah).
+di riwayat penyakit per tanggal (sudah)
+status pulang wajib di isi (sudah).
+pencarian icd10 kode&nama (sudah)
+tindakan produk (sudah)10:59 19/09/2022
+alert order farmasi (sudah)
+filter farmasi penerimaan (stok obat) (sudah).
+3 harga di produk (klinik, dokter, perawat) (sudah)
+tab di form input (sudah).
+di form pendaftaran muncul data lebih dari 1 di pencarian (sudah).
+cara pakai farmasi reset (sudah)
+reset order farmasi (pagisoremalam). (sudah)
+alert warna untuk tensi (sudah).
+status kecelakaan (x).
+tombol sync riwayat alergi. (sudah)
+data di pelayanan tidak sesuai (farmasi) (sudah)
+lab di lanjutkan (per masing masing tindakan) (sudah).
+status lab  di data pelayanan (sudah).
+nomor antrian di pendaftaran (sudah).
+radiologi (form input) (sudah)
+filter di dashboard status (radiologi, lab) (sudah)
+
+pdf hasil lab (sudah)
+pdf hasil rad (sudah)
+pdf SK sakit (sudah)
+pdf SK sehat (sudah)
+pdf SK berobat (sudah)
+pdf lab covid (sudah)
+pdf farmasi (sudah)
+
+# REVISI TAHAP 2
+
+1. restriksi akses permasing masing jenis user (sudah)
+
+Adm/ADC/Pendaftaran/Kasir (sudah)
+Perawat/Bidan (sudah)
+Dokter (sudah)
+Dokter Gigi (sudah)
+Farmasi (sudah)
+Lab (sudah)
+Radiologi (sudah)
+
+2. Tambah menu pelayanan dokter gigi (sudah)
+
+3. saat pendaftaran ada ditanya keluhannya apa, jadikan itu keluhan utama disaat melakukan pelayanan (sudah)
+
+4. pada pemeriksaan fisik status IMT hasilnya bukan centimeter, kosongin aja (sudah)
+nilai normal respirasi 16-20 (sudah)
+nilai normal denyut jantung 60-100 (sudah)
+surat hasil pemeriksaan labor belum ada (sudah)
+tidak bisa menambahkan orderan labor saat pelayanan labor sudah selesai, harusnya bisa buat kode order baru (sudah) (pr)
+surat hasil pemeriksaan radiologi belum ada (sudah)
+
+5. di data riwayat pasien anamnesanya double (sudah)
+data obat tambahan juga belum masuk (sudah)
+hasil lab belum ada tampak (sudah)
+gak usah ada kolom nama dokternya dan tanggal order di hasil lab (sudah)
+hasil bacaan radiologi juga belum ada (sudah)
+tindakan yang dilakukan juga belum masuk (sudah)
+diagnosa juga belum (sudah)
+tindakan juga belum (sudah)
+
+6. seluruh kolom yang ada di pelayanan harus wajib di input kecuali riwayat alergi obat (sudah)
+
+7. belum ada menu untuk melihat riwayat berobat pasien tanpa perlu melakukan pendaftaran (sudah)
+
+pas print resep masih muncul halaman webnya (sudah)
+
+# RABU, 05/10/2022
+data pasien (muncul riwayat kunjngan dll). (sudah)
+input pekerjaan (sudah),
+field nama ibu kandung di pasien. (sudah)
+nama pj dan nomor hp pj (sudah)
+menu obat di default 50% (sudah)
+Hipoventilasi (hipoksi) (sudah)
+prognosa wajib. (sudah)
+obat (tanpa di refresh) (sudah)
+filter (hasil lab tidak boleh kosong)
+filter hasil radiologi tidak boleh kosong. (gambar dulu baru keterangan) (sudah)
+
+- tindakan ada opsi berapa jumlah (sudah)
+- kalo bisa bisa terbaca respond time dokter/lab/radiologi (sudah)
+- di status pulang sebaiknya ada menu dirawat inapkan (sudah)
+- Nilai rujukan laboratorium (sudah)
+trus pasien yang udah terdaftar hari ini jangan lagi bisa didaftarin dihari yg sama (sudah)
+modul perawat (sudah)
+ji kalau simpan dipelayanan bisa gak jangan lengkap dulu isinya pas selesai baru lengkap (sudah)
+karna perawat masih pake modul pelayanan yg sama kayak dokter (sudah)
+
+# JUMAT 07/10/2022
+1. untuk pasien yang sudah dilayani, tombol action dipencet trus pas
+buka halaman pelayanannya jatuhnya pas edit ulang dari awal,
+seharusnya edit langsung atau kalau bisa tombol action diganti dengan tombol edit (sudah)
+2. di pelayanan waktu klik simpan seharusnya boleh tidak isi lengkap dulu (sudah)
+3. halaman pelayanan khusus untuk perawat (pemeriksaan fisik aja tanpa status lokalis) (sudah)
+4. tambah hak akses satu lagi untuk beautician (sudah)
+5. pelayanan untuk pencet tombol mulai pelayanan tidak muncul di hape android dengan aplikasi google chrome (sudah)
+9. subheader dari pemeriksaan fisik double hapus salah satunya (sudah)
+10. di surat keterangan sakit, misal tanggal mulai surat sakitnya tanggal 7
+dan diberikan selama 3 hari, seharusnya sampai tanggal 9 bukan tanggal 10 karna tanggal 7 nya dihitung 1 hari (sudah)
+11. di farmasi tambahin tampilan obat yang ada di klinik semuanya,
+untuk bisa dilihat dokter kalau bingung mau kasi obat apa (liat aja gak bisa edit stok) (sudah)
+13. akun beautician (sudah)
+8. sewaktu mendaftar, saat nomor bpjs belum diinput muncul notif
+belum terdaftar tapi ternyata sudah terdaftar dan saat mulai pelayanan jadi error (sudah)
+trus itu kan pasiennya didaftarin ke dokter nuansa, seharusnya gak bisa diakses oleh dokter gigi zuraida, ini bisa (sudah)
+
+## BELUM
+profile user
+lab bermasalah, tanda tangan ganti ke qrcode dokter.
+yang ini untuk filternya kalau bisa perkategori ji filter obat.
+satu lagi, database yang ada di aplikasi untuk antigen selama ini tolong masukin juga ya
+order obat saat sudah selesai bisa buat order baru.
+tapi orderan barunya tidak muncul baik di pelayanan maupun di farmasi
+7. profil petugas yang bisa diedit sendiri oleh mereka, disertai dengan
+tanda tangan supaya bisa generate tanda tangan dokter
+- halaman pendaftaran (rapihin data pasien).
+
+
+# TERBARU
+6. tampilan mobilenya bagus tapi belum ada di farmasi, lab, radiologi dll (sudah)
+hasil lab dibedain antigen dengan hasil lab (sudah)
+- hapus kunjungan (ketika ada catatan atau tidak) (sudah)
+- filter di data-obat berdasarkan kategori. (sudah)
+- layanan rwj, sorting descending berdasarkan nomor antrian. (sudah)
+- untuk invoice, perbaikan logo, alamat dll di bawah (footer), (sudah)
+    ikutin seperti invoice di siloam. (sudah)
+- pembulatan pembayaran di kasir (sudah)
+- cetakan hasil radiologi (sudah)
+- hasil lab tambah satuan dan nilai rujukan (sudah)
+- hasil radiologi (sudah)
+- untuk resep diperbaikin tata letak. (sudah)
+- resep untuk racikan. (sudah)
+- set satuan untuk produk lab. (sudah)
+
+- order farmasi tambah tombol simpan & order
+- resep order di kasih garis bawah.
+
+
+cetak hasil lab di pelayanan dibedain dengan swab. (sudah)
+
+
+18/11/2022
+- order obat ketika selesai pelayanan, di pelayanan farmasi baru muncul
+- edit pendaftaran, poliklinik, dpjp, jaminan, dgn syarat (status pasien dibelum dilayani) (sudah)
+
+ESTETIKA
+field KLL,
+
+
+
+- farmasi di buat kasir untuk umum.
+
+# laporan
+laporan pendapatan (harian, mingguan, bulanan, tahunan)
+laporan pasien kunjungan,
+
+
+
+# NANTI
+- menu chat sebaiknya ada antar pengguna aplikasi
+(operator/dokter/perawat/lab/farmasi) (nanti)
+- di pendaftaran ada menu pendaftaran radiologi (nanti)
+
+Clinistic
+Artic Clinic
+
+MEDTECH
+CLINIC CONNECT
+ANTIMAGE Clinic
+
+user : admin
+password : alelesukse5
+https://demo.sisfonet.com/app-klinikgigi/dashboard.html
+
+
+# ESTETIKA
+riwayat kosmetik
+riwayat pengobatan
+pemeriksaan fisik
+status lokalis upload foto
+
+- produk dinamis berdasarkan roles
+- pdf lab di kasih note, terakhir di lihat.
+- nomor surat lab, surat keterangan.
+
+
+<script>
+    // Initialize the agent at application startup.
+    const fpPromise = import('https://fpcdn.io/v3/56n5TmNZJrUjzAN2QBpP')
+      .then(FingerprintJS => FingerprintJS.load({
+        region: "ap"
+      }))
+
+    // Get the visitor identifier when you need it.
+    fpPromise
+      .then(fp => fp.get())
+      .then(result => {
+        // This is the visitor identifier:
+        const visitorId = result.visitorId
+        console.log(visitorId)
+      })
+  </script>

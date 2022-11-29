@@ -23,3 +23,8 @@ Homestead.json
 .phpunit.result.cache
 .idea
 code-generator
+public/fapro6
+public/template
+public/login
+public/images
+
