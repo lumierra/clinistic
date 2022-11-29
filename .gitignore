@@ -23,4 +23,3 @@ Homestead.json
 .phpunit.result.cache
 .idea
 code-generator
-public/template
