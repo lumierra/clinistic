@@ -23,6 +23,4 @@ Homestead.json
 .phpunit.result.cache
 .idea
 code-generator
-public/fapro6/webfonts
-public/fapro6/svgs/sharp-solid
 public/template
