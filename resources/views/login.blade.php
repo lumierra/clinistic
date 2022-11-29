@@ -12,10 +12,6 @@
     <meta property="og:image" content="{{ asset($dataWebsite->logo ?? '') }}" />
     <link rel="icon" href="{{ asset($dataWebsite->logo ?? '') }}">
 
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 	<link rel="stylesheet" href="{{ asset('login/css/style.css') }}">
 	<link rel="stylesheet" href="{{ asset('fapro6/css/all.css') }}">
 
@@ -23,16 +19,10 @@
 <body class="img js-fullheight" style="background-image: url({{ asset('login/images/bg.jpg') }}); min-height:749px;">
     <section class="ftco-section">
         <div class="container">
-            {{-- <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Login #10</h2>
-                </div>
-            </div> --}}
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0">
                         <img class="img-fluid text-center px-5" style="height1: 195px;" src="{{ asset('images/logo.png') }}">
-                        {{-- <h3 class="mb-4 text-center">{{ $dataWebsite->nama_website ?? '' }}</h3> --}}
                         <form action="{{ route('login') }}" method="POST" id="formLogin" class="signin-form">
                             @csrf
                             <div class="form-group">
