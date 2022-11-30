@@ -1,5 +1,7 @@
 @section('title', 'Dashboard')
-
+@push('gambar')
+    <link rel="preload" as="image" href="{{ asset('images/dokter-success.webp') }}">
+@endpush
 @push('style')
 <style>
     .test {
@@ -26,7 +28,8 @@
                                 <h5 class="text-center test">{{ $dataWebsite->nama_website ?? '' }}</h5>
                             </div>
                             <div class="col-md-6 col-12">
-                                <img src="{{ asset('images/dokter-'.$dataWebsite->template.'.png') }}">
+{{--                                <img src="{{ asset('images/dokter-'.$dataWebsite->template.'.png') }}">--}}
+                                <img class="img-fluid" src="{{ asset('images/dokter-success.webp') }}" alt="RME Klinik Abah">
                             </div>
                             {{-- DESKTOP --}}
                             <div class="d-none d-md-inline d-sm-none col-md-6 col-12">
@@ -52,7 +55,7 @@
     @push('script')
     <script src="{{ asset('template/assets/vendor_components/c3/d3.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor_components/c3/c3.min.js') }}"></script>
-    <script src="{{ asset('template/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
+{{--    <script src="{{ asset('template/assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>--}}
     {{-- <script src="{{ asset('template/js/pages/widgets.js') }}"></script> --}}
     <script>
         var n = c3.generate({

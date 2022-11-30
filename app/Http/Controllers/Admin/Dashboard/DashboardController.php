@@ -36,7 +36,6 @@ class DashboardController extends Controller
         $lab = $this->getLab();
         $radiologi = $this->getRadiologi();
 
-
         $firstDay = Carbon::now()->startOfMonth()->format('Y-m-d');
         $lastDay = Carbon::now()->endOfMonth()->format('Y-m-d');
         $countDay = Carbon::now()->daysInMonth;

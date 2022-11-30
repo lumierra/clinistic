@@ -76,6 +76,9 @@ use App\Http\Controllers\LoginController;
 //});
 
 Route::redirect('/', 'login');
+Route::get('home', function () {
+    return redirect()->route('admin.dashboard.index');
+})->name('home');
 
 Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'store'])->name('login');

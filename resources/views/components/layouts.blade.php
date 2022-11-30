@@ -15,6 +15,8 @@
     <title>{{ $dataWebsite->nama_singkat ?? '' }} - @yield('title') </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @stack('gambar')
+
 	<!-- Vendors Style-->
     <link rel="stylesheet" href="{{ asset('template/css/vendors_css.css') }}">
 
@@ -70,16 +72,6 @@
                                 {{ $hariini }}
                                 <span id="jam"></span>
                             </div>
-                            {{-- <div class="search-bx mx-5">
-                                <form>
-                                    <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn" type="submit" id="button-addon3"><i data-feather="search"></i></button>
-                                    </div>
-                                    </div>
-                                </form>
-                            </div> --}}
                         </div>
                     </li>
                 </ul>
@@ -213,10 +205,10 @@
             {{-- @if (Auth::user()->role_id == 1 || Auth::user()->name == 'aji') --}}
                 <li class="{{ request()->routeIs('admin.dashboard*') ? 'current' : '' }}"><a href="{{ route('admin.dashboard.index') }}"><i class="fad fa-desktop"></i>Dashboard</a></li>
             {{-- @endif --}}
+            @php
+                $menuAll = Auth::user()->getAllMenu();
+            @endphp
             @if (Auth::user()->role_id == 1 || Auth::user()->id == 1)
-                @php
-                    $menuAll = Auth::user()->getAllMenu();
-                @endphp
                 @foreach ($menuAll as $item)
                     @if ($item->url == '')
                         <li><a href="#"><i class="{{ $item->icon }}"></i>{{ $item->nama }}</a>
@@ -247,65 +239,7 @@
                         </li>
                     @endif
                 @endforeach
-                {{-- <li><a href="#"><i class="fad fa-layer-group"></i>Master</a>
-                    <ul>
-                        <li class="{{ request()->routeIs('admin.menu*') ? 'current' : '' }}"><a href="{{ route('admin.menu.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Setting Menu</a></li>
-                        <li class="{{ request()->routeIs('admin.pengguna*') ? 'current' : '' }}"><a href="{{ route('admin.pengguna.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Pengguna</a></li>
-                        <li class="{{ request()->routeIs('admin.poliklinik*') ? 'current' : '' }}"><a href="{{ route('admin.poliklinik.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Poliklinik</a></li>
-                        <li class="{{ request()->routeIs('admin.dokter.*') ? 'current' : '' }}"><a href="{{ route('admin.dokter.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dokter</a></li>
-                        <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Parameter</a>
-                            <ul>
-                                <li class="{{ request()->routeIs('admin.satuan*') ? 'current' : '' }}"><a href="{{ route('admin.satuan.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Satuan</a></li>
-                                <li class="{{ request()->routeIs('admin.kategori-obat*') ? 'current' : '' }}"><a href="{{ route('admin.kategori-obat.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Kategori Obat</a></li>
-                                <li class="{{ request()->routeIs('admin.jenis-waste*') ? 'current' : '' }}"><a href="{{ route('admin.jenis-waste.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Jenis Waste</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rujukan</a>
-                            <ul>
-                                <li class="{{ request()->routeIs('admin.kategori-rujukan*') ? 'current' : '' }}"><a href="{{ route('admin.kategori-rujukan.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Kategori Rujukan</a></li>
-                                <li class="{{ request()->routeIs('admin.asal-rujukan*') ? 'current' : '' }}"><a href="{{ route('admin.asal-rujukan.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Asal Rujukan</a></li>
-                            </ul>
-                        </li>
-                        <li class="{{ request()->routeIs('admin.asuransi*') ? 'current' : '' }}"><a href="{{ route('admin.asuransi.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Asuransi</a></li>
-                        <li class="{{ request()->routeIs('admin.produk*') ? 'current' : '' }}"><a href="{{ route('admin.produk.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Produk</a></li>
-                        <li class="{{ request()->routeIs('admin.website*') ? 'current' : '' }}"><a href="{{ route('admin.website.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Profile Klinik</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fad fa-registered"></i>Pendaftaran</a>
-                    <ul>
-                        <li class="{{ request()->routeIs('admin.pasien.*') ? 'current' : '' }}"><a href="{{ route('admin.pasien.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Data Pasien</a></li>
-                        <li class="{{ request()->routeIs('admin.rawat-jalan.*') ? 'current' : '' }}"><a href="{{ route('admin.rawat-jalan.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rawat Jalan</a></li>
-                        <li class="{{ request()->routeIs('admin.pendaftaran-lab.*') ? 'current' : '' }}"><a href="{{ route('admin.pendaftaran-lab.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Laboratorium</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fad fa-stethoscope"></i>Pelayanan</a>
-                    <ul>
-                        <li class="{{ request()->routeIs('admin.layanan-rwj.*') ? 'current' : '' }}"><a href="{{ route('admin.layanan-rwj.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Rawat Jalan</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fad fa-pills"></i>Farmasi</a>
-                    <ul>
-                        <li class="{{ request()->routeIs('admin.farmasi.*') ? 'current' : '' }}"><a href="{{ route('admin.farmasi.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dashboard Farmasi</a></li>
-                        <li class="{{ request()->routeIs('admin.obat.*') ? 'current' : '' }}"><a href="{{ route('admin.obat.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Obat</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fad fa-flask"></i>Laboratorium</a>
-                    <ul>
-                        <li class="{{ request()->routeIs('admin.lab.*') ? 'current' : '' }}"><a href="{{ route('admin.lab.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dashboard Laboratorium</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fad fa-x-ray"></i>Radiologi</a>
-                    <ul>
-                        <li class="{{ request()->routeIs('admin.radiologi.*') ? 'current' : '' }}"><a href="{{ route('admin.radiologi.index') }}"><i class="icon-Commit"><span class="path1"></span><span class="path2"></span></i>Dashboard Radiologi</a></li>
-                    </ul>
-                </li>
-                <li class="{{ request()->routeIs('admin.kasir*') ? 'current' : '' }}"><a href="{{ route('admin.kasir.index') }}"><i class="fad fa-cash-register"></i>Kasir</a></li> --}}
             @else
-                @php
-                    $datamenu = Auth::user(0)->getMenu();
-                    $menuAll = Auth::user()->getAllMenu();
-                @endphp
-
                 {{-- BARU --}}
                 @foreach ($menuAll as $item)
                     @if ($item->cekMenu())
@@ -402,7 +336,7 @@
 
 	<!-- Vendor JS -->
     <script src="{{ asset('template/js/vendors.min.js') }}"></script>
-    <script src="{{ asset('template/js/pages/chat-popup.js') }}"></script>
+{{--    <script src="{{ asset('template/js/pages/chat-popup.js') }}"></script>--}}
     <script src="{{ asset('template/assets/icons/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('template/assets/vendor_components/jquery-toast-plugin-master/src/jquery.toast.js') }}"></script>
     <script src="{{ asset('template/assets/vendor_components/bootstrap-select/dist/js/bootstrap-select.js') }}"></script>

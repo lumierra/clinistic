@@ -78,7 +78,7 @@ Waves
 /*Body*/
 @import url(color_theme.css);
 @import url(horizontal-menu.css);
-@import url(style_rtl.css);
+/*@import url(style_rtl.css);*/
 @import url(../../fapro6/css/all.css);
 @import url(../../template/assets/vendor_components/animate/animate.css);
 html {

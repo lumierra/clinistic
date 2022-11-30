@@ -8,7 +8,6 @@
                 title2="Master"
                 title3="Hak Akses"
                 >
-
             </x-breadcrumb>
 
             <section class="content">
@@ -146,11 +145,15 @@
                     closeOnConfirm: false,
                     cancelButtonText: 'Batal',
                 }, function() {
-                    swal("Berhasil !!", "Data Berhasil Dihapus", "success");
                     $.ajax({
-                        type: "GET",
-                        url: "{{ route('admin.roles.store') }}" + '/' + id,
+                        type: "DELETE",
+                        url: "{{ route('admin.roles.index') }}" + '/' + id,
                         success: function (data) {
+                            if(data == 'success'){
+                                swal("Berhasil !!", "Data Berhasil Dihapus", "success");
+                            } else {
+                                swal("Gagal !!", data, "error");
+                            }
                             $('.dataServer').DataTable().ajax.reload();
                         },
                         error: function (data) {

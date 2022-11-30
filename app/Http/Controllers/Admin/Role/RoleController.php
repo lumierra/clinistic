@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Role;
 
 use App\Models\Role;
 use App\Models\RoleUser;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -118,13 +119,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $role_user = RoleUser::where('role_id', $id)->first();
-        if (!$role_user){
-            Role::find($id)->delete();
-            return response()->json('Success');
-        } else {
-            dd('Gagal');
-        }
+
     }
 
     /**
@@ -159,12 +154,12 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role_user = RoleUser::where('role_id', $id)->first();
-        if (!$role_user){
-            Role::find($id)->delete();
-            return response()->json('Success');
+        $user = User::where('role_id', $id)->first();
+        if(!$user){
+            Role::findOrFail($id)->delete();
+            return response()->json('success');
         } else {
-            dd('Gagal');
+            return response()->json('Data tidak dapat dihapus');
         }
     }
 }
