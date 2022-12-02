@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Layanan;
 
+use App\Http\Controllers\Admin\Log\LogController;
 use App\Http\Controllers\Controller;
 use App\Models\Antrian;
 use App\Models\DetailBarang;
@@ -211,6 +212,16 @@ class TindakanLayananController extends Controller
             'waktu_panggil' => date('Y-m-d H:i:s'),
             'status' => 'dipanggil'
         ]);
+        $data = [
+            'user' => auth()->user()->id,
+            'nama' => auth()->user()->name,
+            'tanggal' => date('Y-m-d H:i:s'),
+            'keterangan' => 'Pelayanan pada pasien ' . $kunjungan->no_rm . ' ' . $kunjungan->pasien->nama,
+            'warna' => 'info',
+            'aktifitas' => 'READ',
+        ];
+        $log = new LogController();
+        $log->simpan($data);
         return response()->json('Success');
     }
 

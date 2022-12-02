@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Pendaftaran\Rwj;
 
+use App\Http\Controllers\Admin\Log\LogController;
 use App\Http\Controllers\Controller;
 use App\Models\Kunjungan;
 use Illuminate\Http\Request;
@@ -84,6 +85,17 @@ class UbahPendaftaranController extends Controller
             'status_jaminan' => $jaminan,
             'asuransi_id' => $asuransi,
         ]);
+
+        $data = [
+            'user' => auth()->user()->id,
+            'nama' => auth()->user()->name,
+            'tanggal' => date('Y-m-d H:i:s'),
+            'keterangan' => 'Mengedit Data Pendaftaran Rawat Jalan Ke Poli'. ' dengan pasien ' . $kunjungan->no_rm . ' ' . $kunjungan->pasien->nama,
+            'warna' => 'warning',
+            'aktifitas' => 'UPDATE',
+        ];
+        $log = new LogController();
+        $log->simpan($data);
 
         return response()->json('Success');
     }

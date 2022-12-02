@@ -30,4 +30,7 @@ Task 02/12/2022
   - CREATE (success)
   - UPDATE (warning)
   - DELETE (danger)
+  - READ (info)
+
+2. Membuat log di Data Pasien.
 

@@ -153,7 +153,6 @@ class PasienController extends Controller
                     'kota_id' => $request->kota,
                     'kecamatan_id' => $request->kecamatan,
                     'kelurahan_id' => $request->kelurahan,
-                    // 'no_bpjs' => $request->bpjs,
                     'status_kawin' => $request->kawin,
                     'golongan_darah' => $request->golongan_darah,
                     'pendidikan' => $request->pendidikan,
@@ -165,7 +164,7 @@ class PasienController extends Controller
                 'user' => auth()->user()->id,
                 'nama' => auth()->user()->name,
                 'tanggal' => date('Y-m-d H:i:s'),
-                'keterangan' => 'pasien baru ' . $pasien->no_rm . ' ' . $pasien->nama,
+                'keterangan' => 'Menambah data pasien baru ' . $pasien->no_rm . ' ' . $pasien->nama,
                 'warna' => 'success',
                 'aktifitas' => 'CREATE',
             ];
@@ -189,7 +188,6 @@ class PasienController extends Controller
                     'kota_id' => $request->kota,
                     'kecamatan_id' => $request->kecamatan,
                     'kelurahan_id' => $request->kelurahan,
-                    // 'no_bpjs' => $request->bpjs,
                     'status_kawin' => $request->kawin,
                     'golongan_darah' => $request->golongan_darah,
                     'pendidikan' => $request->pendidikan,
@@ -200,7 +198,7 @@ class PasienController extends Controller
                 'user' => auth()->user()->id,
                 'nama' => auth()->user()->name,
                 'tanggal' => date('Y-m-d H:i:s'),
-                'keterangan' => 'pasien ' . $pasien->no_rm . ' ' . $pasien->nama,
+                'keterangan' => 'Mengedit data pasien ' . $pasien->no_rm . ' ' . $pasien->nama,
                 'warna' => 'warning',
                 'aktifitas' => 'UPDATE',
             ];
@@ -242,8 +240,8 @@ class PasienController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $log = new LogController();
         if ($request->buat == 'create'){
-
             $lastID = Pasien::select('no_rm')->orderBy('id', 'desc')->first();
             if (!$lastID){
                 $newID = '000001';
@@ -271,12 +269,20 @@ class PasienController extends Controller
                     'kota_id' => $request->kota,
                     'kecamatan_id' => $request->kecamatan,
                     'kelurahan_id' => $request->kelurahan,
-                    // 'no_bpjs' => $request->bpjs,
                     'status_kawin' => $request->kawin,
                     'golongan_darah' => $request->golongan_darah,
                     'pendidikan' => $request->pendidikan,
                 ]
             );
+            $data = [
+                'user' => auth()->user()->id,
+                'nama' => auth()->user()->name,
+                'tanggal' => date('Y-m-d H:i:s'),
+                'keterangan' => 'Menambah data pasien baru ' . $pasien->no_rm . ' ' . $pasien->nama,
+                'warna' => 'success',
+                'aktifitas' => 'CREATE',
+            ];
+            $log->simpan($data);
         } else {
             $pasien = Pasien::updateOrCreate(
                 ['id' => $request->product_id],
@@ -295,12 +301,20 @@ class PasienController extends Controller
                     'kota_id' => $request->kota,
                     'kecamatan_id' => $request->kecamatan,
                     'kelurahan_id' => $request->kelurahan,
-                    // 'no_bpjs' => $request->bpjs,
                     'status_kawin' => $request->kawin,
                     'golongan_darah' => $request->golongan_darah,
                     'pendidikan' => $request->pendidikan,
                 ]
             );
+            $data = [
+                'user' => auth()->user()->id,
+                'nama' => auth()->user()->name,
+                'tanggal' => date('Y-m-d H:i:s'),
+                'keterangan' => 'Mengedit data pasien ' . $pasien->no_rm . ' ' . $pasien->nama,
+                'warna' => 'warning',
+                'aktifitas' => 'UPDATE',
+            ];
+            $log->simpan($data);
         }
 
         return response()->json($pasien->no_rm);
@@ -317,6 +331,16 @@ class PasienController extends Controller
         $kunjungan = Kunjungan::where('pasien_id', $id)->first();
         if (!$kunjungan){
             $pasien = Pasien::findOrFail($id);
+            $data = [
+                'user' => auth()->user()->id,
+                'nama' => auth()->user()->name,
+                'tanggal' => date('Y-m-d H:i:s'),
+                'keterangan' => 'Menghapus data pasien ' . $pasien->no_rm . ' ' . $pasien->nama,
+                'warna' => 'danger',
+                'aktifitas' => 'DELETE',
+            ];
+            $log = new LogController();
+            $log->simpan($data);
             $pasien->delete();
             return response()->json('Success');
         } else {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Layanan;
 
+use App\Http\Controllers\Admin\Log\LogController;
 use App\Http\Controllers\Controller;
 use App\Models\Antrian;
 use App\Models\AsalRujukan;
@@ -212,6 +213,17 @@ class RwjController extends Controller
 
             $this->transaksi($kunjungan);
 
+            $data = [
+                'user' => auth()->user()->id,
+                'nama' => auth()->user()->name,
+                'tanggal' => date('Y-m-d H:i:s'),
+                'keterangan' => 'Menambah Pendaftaran Rawat Jalan Ke Poli '. $kunjungan->poliklinik->nama . ' dengan pasien ' . $pasien->no_rm . ' ' . $pasien->nama,
+                'warna' => 'success',
+                'aktifitas' => 'CREATE',
+            ];
+            $log = new LogController();
+            $log->simpan($data);
+
             return response()->json([
                 'status' => 200,
                 'message' => 'Berhasil Menambahkan Data'
@@ -397,6 +409,16 @@ class RwjController extends Controller
         if ($kunjungan){
             $kunjungan = Kunjungan::findOrFail($id)->delete();
             $antrian = Antrian::where('kunjungan_id', $id)->first()->delete();
+            $data = [
+                'user' => auth()->user()->id,
+                'nama' => auth()->user()->name,
+                'tanggal' => date('Y-m-d H:i:s'),
+                'keterangan' => 'Menghapus data pendaftaran pasien ' . $kunjungan->no_rm . ' ' . $kunjungan->pasien->nama,
+                'warna' => 'danger',
+                'aktifitas' => 'DELETE',
+            ];
+            $log = new LogController();
+            $log->simpan($data);
             return response()->json('Success');
         } else {
             return response()->json('error');

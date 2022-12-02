@@ -41,7 +41,8 @@
                                             <tr>
                                                 <th class="text-center" width="1%">No</th>
                                                 <th width="20%">Tanggal & Jam</th>
-                                                <th width="70%">Keterangan</th>
+                                                <th width="60%">Keterangan</th>
+                                                <th width="10%">Status</th>
                                                 <th class="text-center" width="10%">Action</th>
                                             </tr>
                                         </thead>
@@ -74,6 +75,7 @@
                     {data: 'DT_RowIndex', name: 'log_aktifitas.id', className:'text-center'},
                     {data: 'tanggal', name: 'tanggal', className: 'text-center'},
                     {data: 'keterangan', name: 'keterangan', className: 'text-start'},
+                    {data: 'aktifitas', name: 'keterangan', className: 'text-center'},
                     {
                         data: 'action',
                         name: 'action',

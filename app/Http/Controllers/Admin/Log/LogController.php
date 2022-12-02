@@ -40,7 +40,10 @@ class LogController extends Controller
                     return $date . ', '. date('d/m/Y H:i:s', strtotime($row->tanggal));
                 })
                 ->editColumn('keterangan', function($row){
-                    return $row->nama . ' ' . 'melakukan ' . '<span class="text-'.$row->warna.'">'.$row->aktifitas.'</span>' . ' ' . $row->keterangan;
+                    return $row->nama . ' ' . 'melakukan ' . ' ' . $row->keterangan;
+                })
+                ->editColumn('aktifitas', function($row){
+                    return '<span class="badge badge-'.$row->warna.'">'.$row->aktifitas.'</span>';
                 })
                 ->addColumn('action', function($row){
                     $btn = '<div class="list-icons d-inline-flex">
@@ -50,7 +53,7 @@ class LogController extends Controller
                                 </div>';
                     return $btn;
                 })
-                ->rawColumns(['action', 'keterangan', 'tanggal'])
+                ->rawColumns(['action', 'keterangan', 'tanggal', 'aktifitas'])
                 ->make(true);
         }
         $log = LogAktifitas::orderBy('tanggal', 'desc')->get();
