@@ -25,4 +25,9 @@ Database
 23. Asuransi (sudah)
 24. Antrian (sudah)
 
+Task 02/12/2022
+1. Membuat log
+  - CREATE (success)
+  - UPDATE (warning)
+  - DELETE (danger)
 

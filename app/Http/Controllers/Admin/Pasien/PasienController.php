@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Pasien;
 
+use App\Http\Controllers\Admin\Log\LogController;
 use App\Http\Controllers\Controller;
 use App\Models\Asuransi;
 use App\Models\Gender;
@@ -112,7 +113,7 @@ class PasienController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -123,8 +124,8 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
+        $log = new LogController();
         if ($request->buat == 'create'){
-
             $lastID = Pasien::select('no_rm')->orderBy('id', 'desc')->first();
             if (!$lastID){
                 $newID = '000001';
@@ -159,6 +160,17 @@ class PasienController extends Controller
                     'nama_ibu' => $request->nama_ibu,
                 ]
             );
+
+            $data = [
+                'user' => auth()->user()->id,
+                'nama' => auth()->user()->name,
+                'tanggal' => date('Y-m-d H:i:s'),
+                'keterangan' => 'pasien baru ' . $pasien->no_rm . ' ' . $pasien->nama,
+                'warna' => 'success',
+                'aktifitas' => 'CREATE',
+            ];
+            $log->simpan($data);
+
         } else {
             $pasien = Pasien::updateOrCreate(
                 ['id' => $request->product_id],
@@ -184,10 +196,18 @@ class PasienController extends Controller
                     'nama_ibu' => $request->nama_ibu,
                 ]
             );
+            $data = [
+                'user' => auth()->user()->id,
+                'nama' => auth()->user()->name,
+                'tanggal' => date('Y-m-d H:i:s'),
+                'keterangan' => 'pasien ' . $pasien->no_rm . ' ' . $pasien->nama,
+                'warna' => 'warning',
+                'aktifitas' => 'UPDATE',
+            ];
+            $log->simpan($data);
         }
 
         return response()->json('Success');
-
     }
 
     /**

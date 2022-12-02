@@ -39,8 +39,14 @@
                     <div class="col-12">
                         <div class="box">
                             <div class="box-header with-border bg-primary">
-                                <h3 class="box-title">Data Pasien <i class="fal fa-users-medical fa-flip fs-30" style="--fa-animation-duration: 3s;" ></i></h3>
-                                <button class="waves-effect waves-light btn btn-primary3 text-dark btn-rounded btn-social btn-bitbucket mb-5 float-end" id="add">
+                                {{-- MOBILE --}}
+                                <h4 class="box-title d-inline d-sm-none">Data Pasien <i class="fal fa-users-medical fa-flip fs-30" style="--fa-animation-duration: 3s;" ></i></h4>
+                                <button class="box-title d-inline d-sm-none btn-sm waves-effect waves-light btn btn-primary3 text-dark btn-rounded btn-social btn-bitbucket mb-5 float-end" id="add">
+                                    <i class="fal fa-plus-circle"></i> Tambah
+                                </button>
+                                {{-- DEKSTOP --}}
+                                <h3 class="box-title d-none d-none d-md-inline d-sm-none">Data Pasien <i class="fal fa-users-medical fa-flip fs-30" style="--fa-animation-duration: 3s;" ></i></h3>
+                                <button class="d-none d-md-inline d-sm-none waves-effect waves-light btn btn-primary3 text-dark btn-rounded btn-social btn-bitbucket mb-5 float-end" id="addDekstop">
                                     <i class="fal fa-plus-circle"></i> Tambah
                                 </button>
                             </div>
@@ -292,7 +298,7 @@
                 ],
                 language: {
                     "decimal": "",
-                    "emptyTable": "Tidak ada data order radiologi",
+                    "emptyTable": "Tidak ada data pasien",
                     "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
                     "infoEmpty": "Menampilkan 0 sampai 0 dari 0 data",
                     "infoFiltered": "(disaring dari _MAX_ total data)",
@@ -359,6 +365,10 @@
                 $('#buat').val('create');
                 $('#nik').focus();
             });
+
+            $('#addDekstop').click(function () {
+                $('#add').click()
+            })
 
             $('body').on('click', '.editProduct', function () {
                 var product_id = $(this).data('id');

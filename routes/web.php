@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\Layanan\EstetikaController;
 use App\Http\Controllers\Admin\Layanan\RawatJalanController;
 use App\Http\Controllers\Admin\Layanan\RwjController;
 use App\Http\Controllers\Admin\Layanan\TindakanLayananController;
+use App\Http\Controllers\Admin\Log\LogController;
 use App\Http\Controllers\Admin\Menu\MenuController;
 use App\Http\Controllers\Admin\Menu\MenuUserController;
 use App\Http\Controllers\Admin\Menu\SubMenuController;
@@ -161,7 +162,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
         'cari-kunjungan' => CariKunjunganController::class,
         'cari-kunjungan-tanggal' => CariKunjunganTanggalController::class,
 
-        // BUKAN
+        // LOG AKTIFITAS
+        'log' => LogController::class,
     ]);
 
     Route::post('upload-estetika', [EstetikaController::class, 'upload'])->name('upload-estetika');

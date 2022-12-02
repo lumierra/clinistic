@@ -284,6 +284,14 @@
                     Profil
                 </a>
             </li>
+            @if (Auth::user()->role_id == 1 || Auth::user()->id == 1)
+                <li class="{{ request()->routeIs('admin.log.*') ? 'current' : '' }}">
+                    <a href="{{ route('admin.log.index') }}">
+                        <i class="fad fa-user-secret"></i>
+                        Log Aktifitas
+                    </a>
+                </li>
+            @endif
         </ul>
     </nav>
 
