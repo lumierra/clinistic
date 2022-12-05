@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Catatan;
 
+use App\Http\Controllers\Admin\Log\LogController;
 use App\Http\Controllers\Controller;
 use App\Models\Catatan;
 use App\Models\DetailTransaksi;
@@ -146,6 +147,17 @@ class CatatanController extends Controller
 
         $this->sk($catatan);
 
+        $data = [
+            'user' => auth()->user()->id,
+            'nama' => auth()->user()->name,
+            'tanggal' => date('Y-m-d H:i:s'),
+            'keterangan' => 'Menyimpan data layanan pasien ' . $kunjungan->no_rm . ' ' . $kunjungan->pasien->nama . ' Di Poli ' . $kunjungan->poliklinik->nama,
+            'warna' => 'success',
+            'aktifitas' => 'CREATE',
+        ];
+        $log = new LogController();
+        $log->simpan($data);
+
         return response()->json('Success');
     }
 
@@ -168,29 +180,6 @@ class CatatanController extends Controller
                     $detail_transaksi->delete();
                 }
             }
-            // if($surat){
-            //     $surat->delete();
-            //     $detail_transaksi = DetailTransaksi::where('kunjungan_id', $catatan->kunjungan_id)->where('produk_id', 14)->first();
-            //     if($detail_transaksi){
-            //         $detail_transaksi->delete();
-            //     }
-            // }
-            // $surat = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)->where('jenis_surat', 'surat_sehat')->first();
-            // if($surat){
-            //     $surat->delete();
-            //     $detail_transaksi = DetailTransaksi::where('kunjungan_id', $catatan->kunjungan_id)->where('produk_id', 15)->first();
-            //     if($detail_transaksi){
-            //         $detail_transaksi->delete();
-            //     }
-            // }
-            // $surat = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)->where('jenis_surat', 'surat_berobat')->first();
-            // if($surat){
-            //     $surat->delete();
-            //     $detail_transaksi = DetailTransaksi::where('kunjungan_id', $catatan->kunjungan_id)->where('produk_id', 16)->first();
-            //     if($detail_transaksi){
-            //         $detail_transaksi->delete();
-            //     }
-            // }
         } else if ($catatan->surat_keterangan == 'surat_sakit'){
             $cek = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)->where('jenis_surat', $catatan->surat_keterangan)->first();
             if (!$cek){
@@ -208,14 +197,6 @@ class CatatanController extends Controller
                         $detail_transaksi->delete();
                     }
                 }
-                // $surat = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)->where('jenis_surat', 'surat_sehat')->first();
-                // if($surat){
-                //     $surat->delete();
-                // }
-                // $surat = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)->where('jenis_surat', 'surat_berobat')->first();
-                // if($surat){
-                //     $surat->delete();
-                // }
                 $lastID = SuratKeterangan::select('nomor_surat')->whereRaw('right(nomor_surat, 4) = ?', [date('Y')])->orderBy('nomor_surat', 'desc')->first();
                 if (!$lastID){
                     $newID = "01/SK/".$this->bulan_romawi(date("m"))."/".date("Y");
@@ -275,14 +256,6 @@ class CatatanController extends Controller
         } else if ($catatan->surat_keterangan == 'surat_sehat'){
             $cek = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)->where('jenis_surat', $catatan->surat_keterangan)->first();
             if (!$cek){
-                // $surat = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)->where('jenis_surat', 'surat_sakit')->first();
-                // if($surat){
-                //     $surat->delete();
-                // }
-                // $surat = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)->where('jenis_surat', 'surat_berobat')->first();
-                // if($surat){
-                //     $surat->delete();
-                // }
                 $surat = SuratKeterangan::where('kunjungan_id', $catatan->kunjungan_id)
                                         ->where('jenis_surat', 'surat_sakit')
                                         ->orWhere('jenis_surat', 'surat_berobat')

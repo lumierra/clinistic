@@ -44,7 +44,7 @@
                                 <h4 class="box-title">Input Tindakan <i class="fad fa-files-medical fs-20"></i></h4>
                             </div>
                             <div class="box-body">
-                                @if (Auth::user()->role_id == 5)
+                                @if (Auth::user()->role_id == 10)
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#catatanRwj" role="tab"><span><i class="fas fa-notes-medical me-15"></i>Catatan</span></a> </li>
                                         <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#riwayatRwj" role="tab"><span><i class="fas fa-files-medical me-15"></i>Riwayat</span></a> </li>

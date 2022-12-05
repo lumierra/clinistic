@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="{{ Auth::user()->role_id != 5 ? '' : 'd-none' }}">
+                <div class="{{ Auth::user()->role_id != 10 ? '' : 'd-none' }}">
                     <h4 class="box-title text-info mb-0"><i class="fad fa-user-md-chat me-15"></i> Anamnesis</h4>
                     <hr class="my-15">
                     <div class="col-md-12">
